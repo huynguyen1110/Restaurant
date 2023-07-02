@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Restaurant pilot</title>
+    <div th:replace="~{fragments/admin/header :: header}"></div>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+    <!-- Navbar -->
+    <div th:replace="~{fragments/admin/navbar :: navbar}"></div>
+    <!-- /.navbar -->
+    <!-- Main Sidebar Container -->
+    <div th:replace="~{fragments/admin/sidebar :: sidebar}"></div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-8">
+                        <h1 class="m-0">All Merchant</h1>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                                <input class="custom-control-input" type="radio" id="customRadio1" name="status"
+                                       value="ACTIVE">
+                                <label for="customRadio1" class="custom-control-label badge bg-success">Active</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input class="custom-control-input" type="radio" id="customRadio2" name="status"
+                                       value="PENDING_FOR_APPROVAL">
+                                <label for="customRadio2" class="custom-control-label badge bg-warning">Pending For
+                                    Approval</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input class="custom-control-input" type="radio" id="customRadio3" name="status"
+                                       value="EXPIRED">
+                                <label for="customRadio3" class="custom-control-label badge bg-danger">Expired</label>
+                            </div>
+                        </div>
+                    </div><!-- /.col -->
+                    <div class="col-sm-4">
+                        <div class="breadcrumb float-sm-right">
+                            <a class="addNew" href="#"> <i class="fas fa-plus-circle"></i>&nbsp;&nbsp;Add new</a>
+                            <div class="input-group input-group-sm">
+                                <form id="search-form" class="form-inline" method="GET">
+                                    <input id="keyword" type="text" class="form-control" name="keyword" minlength="4"
+                                           th:value="${keyword}"> &nbsp;
+                                    <span class="input-group-append">
+                                            <button type="submit" class="searchMerchant btn btn-info btn-flat"
+                                                    value="Search">Search</button> &nbsp;
+                                            <button type="button" class="clearMerchant btn btn-info btn-flat"
+                                                    value="Clear" onclick="clearFilterMerchant()">Clear</button>
+                                    </span>
+                                </form>
+                            </div>
+                            <div class="text-warning" th:if="${errorMessage != null}"><span
+                                    th:text="${errorMessage}"></span></div>
+                            <div class="text-warning" id="errorMessage"></div>
+                        </div>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col" style="width: 10%">#</th>
+                                <th scope="col" style="width: 25%">
+                                    Name
+                                    <i onclick="handleSort('contactName','ASC')" class="fas fa-arrow-up sortASC"></i>
+                                    <i onclick="handleSort('contactName','DESC')"
+                                       class="fas fa-arrow-down sortDESC"></i>
+                                </th>
+                                <th scope="col" style="width: 50%">Address</th>
+                                <th scope="col" style="width: 15%">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <th:block th:if="${result != null}">
+                                <tr th:each="merchant : ${result.data}">
+                                    <th scope="row"
+                                        th:text="${(merchantStat.index + 1) + numberOfItems * (currentPage -1)} "></th>
+                                    <td th:text="${merchant.getContactName()}"></td>
+                                    <td>
+                                        <h6>
+                                            <span th:text="${merchant.getAddress()}"></span> &nbsp;&nbsp;
+
+                                            <span class="badge bg-warning"
+                                                  th:if="${merchant.status == 'PENDING FOR APPROVAL'}"
+                                                  th:text="${merchant.status}"></span>
+                                            <span class="badge bg-danger"
+                                                  th:if="${merchant.status == 'EXPIRED'}"
+                                                  th:text="${merchant.status}"></span>
+                                            <span class="badge bg-success"
+                                                  th:if="${merchant.status == 'ACTIVE'}"
+                                                  th:text="${merchant.status}"></span>
+                                        </h6>
+                                        <p style="color: #a3a3a3">
+                                            <span th:text="${merchant.getContactEmail()}"></span>
+                                            <br>
+                                            <span th:text="${merchant.getContactPhone()}"></span>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <a><i class="fas fa-edit"></i></a> &nbsp;
+                                        <a><i class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            </th:block>
+                            </tbody>
+                        </table>
+                        <hr>
+                    </div>
+                    <div class="col-md-6 showItems">
+                        Total Items: [[${totalItems}]] - Page [[${currentPage}]] of [[${totalPages}]]
+                    </div>
+                    <div class="col-md-6">
+                        <nav aria-label="Page navigation example">
+                            <ul id="pagination" class="pagination float-right"></ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <div th:replace="~{fragments/admin/footer :: footer}"></div>
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+<div th:replace="~{fragments/admin/body_script :: body_script}"></div>
+</body>
+<script th:inline="javascript">
+    let sortField = [[${sortField}]];
+    let sortType = [[${sortType}]];
+    let totalPages = [[${totalPages}]];
+    let numberOfItems = [[${numberOfItems}]];
+    let currentPage = [[${currentPage}]];
+    let keyword = [[${keyword}]];
+    let status = [[${status}]];
+    let host = "/api/v1/admin/merchants";
+
+    function handleSort(sortField, sortType) {
+        let url = `${host}?page=${currentPage}&sortField=${sortField}&sortType=${sortType}&status=${status}&keyword=${keyword}`;
+        window.location.href = url;
+    }
+
+    $('#pagination').pagination({
+        total: numberOfItems * totalPages,
+        current: currentPage,
+        length: numberOfItems,
+        size: 1,
+        prev: "Previous",
+        next: "Next",
+        click: function (options) {
+            currentPage = options.current;
+            let url = `${host}?page=${options.current}&sortField=${sortField}&sortType=${sortType}&status=${status}&keyword=${keyword}`;
+            window.location.href = url;
+        },
+    })
+
+    function clearFilterMerchant() {
+        window.location = host;
+    }
+
+    $("input[type=radio][name=status]").change(function () {
+        let url = `${host}?status=${this.value}`;
+        window.location.href = url;
+    })
+
+    $(document).ready(() => {
+        let statusSet = document.getElementsByName("status");
+        console.log(statusSet);
+        for (let i = 0; i < statusSet.length; i++) {
+            if (status === statusSet[i].value) {
+                console.log("Set value");
+                statusSet[i].checked = true;
+            }
+        }
+    })
+</script>
+</html>
+
+
+

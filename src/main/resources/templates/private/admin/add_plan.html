@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<title>Add</title>
+<div th:replace="~{fragments/admin/header :: header}"></div>
+<link rel="stylesheet" href="/assets/dist/css/plan.css">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/native-toast@2.0.0/dist/native-toast.css">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="index3.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link">Contact</a>
+            </li>
+        </ul>
+    </nav>
+    <div th:replace="~{fragments/admin/sidebar :: sidebar}"></div>
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid mb-3">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h5 class="m-0"><a class="color-212529" th:href="@{/api/v1/plan/list}"> All Plans</a>
+                            <small> <i class="font-size-10 fas fa-chevron-right"></i>
+                                <i class="font-size-10 fas fa-chevron-right"></i>
+                            </small> <span class="color-a3a3a3">Add</span></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="content">
+            <div class="container-fluid">
+                <form id="form-add-plan">
+                    <div class="form-group ">
+                        <div class="form-group col-sm-12 ">
+                            <input type="text" name="title" id="title" class="form-control" placeholder="Title"
+                                   onchange="validateTitle()">
+                            <small class="color-red" id="titleError"> </small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="margin-left-10">Description</label>
+                        <div class="form-group col-sm-12">
+                            <div id="summernote"></div>
+                            <input type="hidden" name="description" id="description">
+                        </div>
+                        <small class="color-red" id="descriptionError"> </small>
+                    </div>
+                    <div class="form-group display-flex">
+                        <div class="col-sm-6 color-red ">
+                            <label class="label-customer">Price</label>
+                            <input type="text" class="form-control input-customer" id="priceId"
+                                   value="0.00" name="price" onkeydown="validatePrice1()" onkeyup="validatePrice2('priceId')" onchange="validatePrice3('priceId')">
+                        </div>
+                        <div class="col-sm-6 color-red">
+                            <label class="label-customer">Promo Price</label>
+                            <input type="text" class="form-control  input-customer"
+                                   value="0.00" name="promoPrice" id="promoPriceId"  onkeydown="validatePrice1()" onkeyup="validatePrice2('promoPriceId')" onchange="validatePrice3('promoPriceId')">
+                        </div>
+                    </div>
+                    <label class="margin-left-10">Plan period</label>
+                    <div class="form-group  col-sm-12 plan-period">
+                        <div class="col-sm-6 color-red mb-3">
+                            <select class="form-control select-customer" name="monthly" id="monthly">
+                                <option th:value="DAILY">Daily</option>
+                                <option th:value="WEEKLY">Weekly</option>
+                                <option selected th:value="MONTHLY">Monthly</option>
+                                <option th:value="ANUALLY">Annually</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <label class="label-customer">Item limit</label>
+                            <input type="text" class="form-control input-customer "
+                                   id="itemLimitId" name="itemLimit" value="0" onkeydown="validatePlanPeriod1()" onkeyup="validatePlanPeriod2('itemLimitId')">
+                        </div>
+                        <div class="col-sm-6 color-red">
+                            <label class="label-customer">Order limit</label>
+                            <input type="text" class="form-control input-customer "
+                                   id="orderLimitId" name="orderLimit " value="0" onkeydown="validatePlanPeriod1()" onkeyup="validatePlanPeriod2('orderLimitId')">
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="label-customer">Trial Period</label>
+                            <input type="text" class="form-control input-customer  "
+                                   id="trialPeriodId" name="trialPeriod " value="0" onkeydown="validatePlanPeriod1()" onkeyup="validatePlanPeriod2('trialPeriodId')">
+                        </div>
+                    </div>
+                    <label class="margin-left-10">Ordering</label>
+                    <div class="margin-left-10 custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input ordering" name="ordering" id="customSwitch1">
+                        <label class="custom-control-label font-weight-400"
+                               for="customSwitch1">Enabled</label>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label>Status</label>
+                        <select class="form-control select-customer " name="status" id="status">
+                            <option th:value="DARFT">Draft</option>
+                            <option th:value="PUBLISH">Publish</option>
+                            <option th:value="PENDING_FOR_REVIEW">Pending for review</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success button-plan ">Save
+                    </button>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>
+<div th:replace="~{fragments/admin/body_script :: body_script}"></div>
+</body>
+<script src="/assets/dist/js/plan.js"></script>
+<script src="https://unpkg.com/native-toast@2.0.0/dist/native-toast.min.js"></script>
+</html>

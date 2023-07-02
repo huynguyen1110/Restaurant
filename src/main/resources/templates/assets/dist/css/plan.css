@@ -1,0 +1,53 @@
+.color-212529 {
+    color: #212529;
+}
+
+.font-size-10 {
+    font-size: 10px;
+}
+
+.color-a3a3a3 {
+    color: #a3a3a3;
+}
+.color-red{
+    color: red;
+}
+
+.margin-left-10 {
+    margin-left: 10px;
+}
+
+.display-flex {
+    display: flex;
+}
+
+.plan-period {
+    padding-right: 0;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.font-weight-400 {
+    font-weight: 400 !important;
+}
+
+.button-plan {
+    width: 100%;
+    background: #3ecf8e;
+}
+
+.label-customer {
+    position: absolute;
+    left: 20px;
+    font-weight: 400 !important;
+    top: 3px;
+    color: #938484;
+}
+.input-customer{
+    padding-top: 30px;
+    padding-bottom: 15px;
+}
+.select-customer{
+    height: 47px;
+}

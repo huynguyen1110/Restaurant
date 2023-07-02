@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+</head>
+<body>
+<h1>Hello admin</h1>
+<h1 sec:authorize="hasRole('USER')">Hello user</h1>
+<form th:action="@{/dologout}" method="post">
+    <button type="submit" value="logout">Log out</button>
+</form>
+</body>
+</html>

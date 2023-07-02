@@ -1,0 +1,20 @@
+.font-size-10 {
+    font-size: 10px;
+}
+
+.color-a3a3a3 {
+    color: #a3a3a3;
+}
+
+.color-red small {
+    color: red;
+}
+
+.display-flex {
+    display: flex;
+}
+
+.btn-success {
+    width: 100%;
+    background: #3ecf8e;
+}

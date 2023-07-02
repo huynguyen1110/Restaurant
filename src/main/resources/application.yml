@@ -1,0 +1,17 @@
+server:
+  port: 10000
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ine2
+    password: postgresql
+    username: postgresql
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: none
+pocketBase:
+  host: http://127.0.0.1:8090/api/
+  collectionName: myCollection
+  userName: pocketbase@gmail.com
+  password: pocketbasePassword

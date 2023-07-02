@@ -1,0 +1,112 @@
+.pagination > li > a {
+    background-color: white;
+    color: green
+}
+
+.page-item.active .page-link {
+    background-color: green;
+    border-color: green
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover {
+    color: green;
+    background-color: #eee;
+    border-color: #ddd;
+}
+
+.pagination > .active > a {
+    color: white;
+    background-color: green;
+    border: solid 1px green;
+}
+
+.pagination > .active > a:hover {
+    background-color: green;
+    border: solid 1px green;
+}
+
+.file-upload {
+    background-color: #f2f2f2;
+    width: 600px;
+    margin: 10px auto;
+    padding: 20px;
+
+}
+
+.file-upload-content {
+    display: none;
+    text-align: center;
+}
+
+.file-upload-input {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.image-upload-wrap {
+    padding-top: 20%;
+    padding-bottom: 20%;
+    width: 100%;
+    margin-top: 20px;
+    position: relative;
+}
+
+.image-dropping,
+.image-upload-wrap:hover {
+    background-color: #c4cbc8;
+    border: 2px dashed #ffffff;
+}
+
+.image-title-wrap {
+    padding: 0 15px 15px 15px;
+    color: #222;
+}
+
+.drag-text {
+    text-align: center;
+}
+
+.file-upload-image {
+    max-height: 200px;
+    max-width: 200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.btn_upload_new {
+    color: green;
+}
+
+.btn_upload_new:hover {
+    color: green;
+    border: 2px solid gainsboro;
+}
+
+.padding_3 {
+    padding: 3px;
+}
+
+.group_btn_media {
+    padding: 5px;
+    height: 50px;
+    margin: 0px;
+}
+
+.group_btn_page {
+    padding: 5px;
+    height: 50px;
+    margin: 0px;
+}
+
+.padding_0 {
+    padding: 0 !important;
+}

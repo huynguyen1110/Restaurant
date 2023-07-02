@@ -1,0 +1,122 @@
+
+.image_in_lib {
+    overflow: hidden;
+    width: 90%;
+    object-fit: cover;
+    height: 90%;
+}
+
+.pagination > li > a {
+    background-color: white;
+    color: green
+}
+
+.page-item.active .page-link {
+    background-color: green;
+    border-color: green
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover {
+    color: green;
+    background-color: #eee;
+    border-color: #ddd;
+}
+
+.pagination > .active > a {
+    color: white;
+    background-color: green;
+    border: solid 1px green;
+}
+
+.pagination > .active > a:hover {
+    background-color: green;
+    border: solid 1px green;
+}
+
+.media_list {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start
+}
+
+.media_list_wrap {
+    margin: 3px 3px 25px 3px;
+    width: 19%;
+    height: content-box;
+
+}
+
+.btn_upload_new {
+    color: green;
+}
+
+.btn_upload_new:hover {
+    color: green;
+    border: 2px solid gainsboro;
+}
+
+.padding_3 {
+    padding: 3px;
+}
+
+.i_search {
+    position: absolute;
+    padding: 10px;
+    min-width: 30px;
+}
+
+
+.group_btn_media {
+    padding: 5px;
+    height: 50px;
+    margin: 0px;
+}
+
+.group_btn_page {
+    padding: 5px;
+    height: 50px;
+    margin: 0px;
+}
+
+.padding_0 {
+    padding: 0 !important;
+}
+
+.form-search {
+    height: 32px;
+}
+
+.mg-5 {
+    margin: 5px !important;
+}
+
+.search-icon {
+    margin: 0px 6px;
+}
+
+.input_search {
+    width: 90%;
+    height: 30px;
+    text-align: center;
+    border: none;
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}

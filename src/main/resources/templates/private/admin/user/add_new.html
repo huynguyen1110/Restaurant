@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{fragments/admin/header :: header}"></div>
+<link rel="stylesheet" href="/assets/dist/css/addNewUser.css">
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="index3.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link">Contact</a>
+            </li>
+        </ul>
+    </nav>
+    <div th:replace="~{fragments/admin/sidebar :: sidebar}"></div>
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid mb-3">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h5 class="m-0"><a th:href="@{/api/v1/user/list}"> All User</a>
+                            <small> <i class="font-size-10 fas fa-chevron-right"></i>
+                                <i class="font-size-10 fas fa-chevron-right"></i>
+                            </small> <span class="color-a3a3a3">Add new</span></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="content">
+            <div class="container-fluid">
+                <form th:action="@{/api/v1/user/create}" th:object="${user}" method="post">
+                    <div class="form-group display-flex">
+                        <div class="col-sm-6 color-red ">
+                            <input type="text" th:field="${user.firstName}" id="firstName" class="form-control"
+                                   onchange="ValidFirstName()"
+                                   placeholder="First Name">
+                            <small id="firstNameBE" th:errors="*{firstName}"> </small>
+                            <small th:text="${firstNameError}"> </small>
+                            <small id="firstNameError"> </small>
+                        </div>
+                        <div class="col-sm-6 color-red">
+                            <input type="text" th:field="${user.lastName}" id="lastName" class="form-control"
+                                   onchange="isValidLastName()"
+                                   placeholder="Last Name">
+                            <small id="lastNameBE" th:errors="*{lastName}"> </small>
+                            <small th:text="${lastNameError}"> </small>
+                            <small id="lastNameError"> </small>
+                        </div>
+                    </div>
+                    <div class="form-group" style="display: flex">
+                        <div class="col-sm-6 color-red">
+                            <input type="text" th:field="${user.email}" class="form-control" id="email"
+                                   onchange="isValidEmail()"
+                                   placeholder="Email Address">
+                            <small id="emailBE" th:errors="*{email}"> </small>
+                            <small th:text="${errorEmail}"> </small>
+                            <small id="emailError"> </small>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" th:field="${user.phone}" class="form-control "
+                                   placeholder="Contact number">
+                            <small th:errors="*{phone}"> </small>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 color-red">
+                        <input type="text" th:field="${user.userName}" id="userName" class="form-control"
+                               onchange="ValidaUserName()"
+                               placeholder="User Name">
+                        <small id="userNameFE" th:errors="*{userName}"> </small>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label>Status</label>
+                        <select class="form-control " th:field="${user.status}">
+                            <option th:value="ACTIVE">Active</option>
+                            <option th:value="EXPIRED">Expired</option>
+                            <option th:value="BLOCKED">Blocked</option>
+                            <option th:value="PENDING_FOR_APPROVAL">Pending for approval</option>
+                            <option th:value="SUSPENDED">Suspended</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label>Role</label>
+                        <select class="form-control" th:field="${user.role}">
+                            <option th:value="Admin">Admin</option>
+                            <option th:value="User">User</option>
+                            <option th:value="Merchant">Merchant</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <div class="form-group color-red">
+                            <label>Password</label>
+                            <input type="password" th:field="${user.password}" id="inputPassword" name="password"
+                                   class="form-control" placeholder="New Password" onchange="isValidPassword()">
+                            <small th:text="${error}"></small>
+                            <small id="errorPassword" th:errors="*{password}"> </small>
+                            <small id="passwordError"> </small>
+                        </div>
+                        <div class="form-group color-red">
+                            <input type="password" id="confirmPass" class="form-control" name="confirmPassword"
+                                   onchange="confirmPassword()"
+                                   placeholder="Confirm New Password">
+                            <small th:text="${errorConfirmPassword}"></small>
+                            <small id="confirmPassError"></small>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success">Save
+                    </button>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>
+<div th:replace="~{fragments/admin/body_script :: body_script}"></div>
+</body>
+<script>
+    function ValidaUserName() {
+        document.getElementById('userNameFE').innerText = "";
+    };
+
+    function ValidFirstName() {
+
+        let firstName = document.getElementById('firstName').value;
+        if (firstName.startsWith(" ") || firstName.endsWith(" ")) {
+            document.getElementById('firstNameError').innerText = "Names without starting and ending spaces";
+            document.getElementById('firstNameBE').innerText = "";
+            return false;
+        }
+        document.getElementById('firstNameBE').innerText = "";
+        document.getElementById('firstNameError').innerText = "";
+    };
+
+    function isValidLastName() {
+        let lastName = document.getElementById('lastName').value;
+        if (lastName.startsWith(" ") || lastName.endsWith(" ")) {
+            document.getElementById('lastNameError').innerText = "Names without starting and ending spaces";
+            document.getElementById('lastNameBE').innerText = "";
+            return false;
+        }
+        document.getElementById('lastNameError').innerText = "";
+        document.getElementById('lastNameBE').innerText = "";
+    };
+
+    function isValidEmail() {
+        let email = document.getElementById('email').value;
+        let arrayEmail = email.split("@");
+        let localPart = arrayEmail[0];
+        let domain = arrayEmail[1];
+        let localPartAndDomain = localPart.concat(domain);
+        if (email.length == 0) {
+            document.getElementById('emailError').innerText = "";
+            document.getElementById('emailBE').innerText = "";
+            return false;
+        }
+        if (email.length > 150) {
+            document.getElementById('emailError').innerText = "Email Too Long";
+            document.getElementById('emailBE').innerText = "";
+            return false;
+        }
+        if (arrayEmail.length != 2) {
+            document.getElementById('emailError').innerText = "Invalid email format";
+            document.getElementById('emailBE').innerText = "";
+            return false;
+        }
+        if (4 > localPart.length || 63 < localPart.length) {
+            document.getElementById('emailError').innerText = "Email the local part only from 4 to 63 characters";
+            document.getElementById('emailBE').innerText = "";
+            return false;
+        }
+        for (let i = 0; i < localPartAndDomain.length; i++) {
+            let character = localPartAndDomain.charAt(i);
+            if (isNaN(character) && (character < 'a' && character > 'z')
+                && (character != '_' && character != '-' && character != '.')
+                && (character < 'A' && character > 'Z')) {
+                document.getElementById('emailError').innerText = "Invalid email format";
+                document.getElementById('emailBE').innerText = "";
+                return false;
+            }
+        }
+        document.getElementById('emailError').innerText = "";
+        document.getElementById('emailBE').innerText = "";
+    };
+
+    function isValidPassword() {
+        let password = document.getElementById('inputPassword').value;
+        let lowercase = 0;
+        let uppercase = 0;
+        let digit = 0;
+        let special = 0;
+        let countCondition = 0;
+        if (password.length == 0) {
+            document.getElementById('passwordError').innerText = "";
+            return false;
+        }
+        if (password.length < 15) {
+            document.getElementById('passwordError').innerText = "Password from 15 characters";
+            document.getElementById('errorPassword').innerText = "";
+            return false;
+        }
+        for (let i = 0; i < password.length; i++) {
+            let character = password.charCodeAt(i);
+            if (character < 35 || (character > 38 && character < 42) || (character > 43 && character < 48) || (character > 57 && character < 64) || (character > 90
+                && character < 97) || character > 122) {
+                document.getElementById('passwordError').innerText = "Password contains only characters(a->z,A->Z,0-9,@,#,$,%,^,&,* , _ , +) and no spaces";
+                document.getElementById('errorPassword').innerText = "";
+                return false;
+            } else if (character >= 48 && character <= 57 && digit < 1) {
+                digit++;
+                countCondition += digit;
+            } else if (character >= 65 && character <= 90 && uppercase < 1) {
+                uppercase++;
+                countCondition += chu_hoa;
+            } else if (character >= 97 && character <= 122 && lowercase < 1) {
+                lowercase++;
+                countCondition += lowercase;
+            } else if (special < 1 && character >= 35 && character <= 38 || character == 64 || character == 95 || character == 42 || character == 43) {
+                special++;
+                countCondition += special;
+            }
+        }
+        if (countCondition < 4) {
+            if (uppercase == 0) {
+                document.getElementById('passwordError').innerText = "Password must have at least 1 uppercase letter";
+                document.getElementById('errorPassword').innerText = "";
+                return false;
+            }
+            if (lowercase == 0) {
+                document.getElementById('passwordError').innerText = "Password must be at least 1 lowercase letter";
+                document.getElementById('errorPassword').innerText = "";
+                return false;
+            }
+            if (digit == 0) {
+                document.getElementById('passwordError').innerText = "Minimum 1 digit password";
+                document.getElementById('errorPassword').innerText = "";
+                return false;
+            }
+            if (special == 0) {
+                document.getElementById('passwordError').innerText = "Password must be at least 1 special characters";
+                document.getElementById('errorPassword').innerText = "";
+                return false;
+            }
+        }
+        document.getElementById('passwordError').innerText = "";
+    };
+
+    function confirmPassword() {
+        let password2 = document.getElementById('inputPassword').value;
+        let confirmPassword = document.getElementById('confirmPass').value;
+        if (confirmPassword != password2) {
+            document.getElementById('confirmPassError').innerText = "Password incorrect";
+            return false;
+        }
+        if (password2 == "") {
+            document.getElementById('confirmPassError').innerText = "";
+            return false;
+        }
+        document.getElementById('confirmPassError').innerText = "";
+    }
+</script>
+</html>

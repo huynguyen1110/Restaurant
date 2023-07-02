@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    password: Huynguyen11102002
+    username: postgres
+    hibernate:
+      ddl-auto: update
+      database: postgresql
+  security:
+    user:
+      name: huynguyen
+      password: 123456
+  web:
+    resources:
+      static-locations: classpath:/templates/
+  app:
+    jwtSecret: hello
+    jwtExpirationMs: 86400000

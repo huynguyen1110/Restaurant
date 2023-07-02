@@ -1,0 +1,117 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4" th:fragment="sidebar">
+    <a href="index3.html" class="brand-link">
+        <img src="/assets/dist/img/restaurant-icon.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+             style="opacity: .8">
+        <span class="brand-text font-weight-light">Multi Restaurant</span>
+    </a>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex" id="header_dropdown">
+            <div class="image">
+                <img src="/assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info" id="admin_name">
+                <a href="#" class="d-block">Alexander Pierce</a>
+            </div>
+            <div class="account_dropdown">
+                <div class="account_dropdown_body">
+                    <div class="account_dropdown_item">
+                        <a href="#">
+                            <i class="fa fa-user"></i>Profile
+                        </a>
+                    </div>
+                    <div class="account_dropdown_item">
+                        <a href="#">
+                            <i class="fa fa-cog"></i>setting
+                        </a>
+                    </div>
+                    <div class="account_dropdown_footer">
+                        <a href="#">
+                            <i class="fa fa-sign-out-alt"></i>logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                data-accordion="false">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link">
+                        <p>
+                            Merchant
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a th:href="@{/api/v1/admin/merchants}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./index2.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>All Roles</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/api/v1/admin/media-library}" class="nav-link">
+                        <p>
+                            Media Library
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link">
+                        <p>
+                            Users
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a th:href="@{/api/v1/user/list}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>All User</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./index2.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>All Roles</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <p>
+                            Membership
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a th:href="@{/api/v1/plan/create}" style=" margin-left: 25px;" class="nav-link">
+
+                                <p>Add plan</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</aside>

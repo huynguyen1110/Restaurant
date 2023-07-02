@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>user</title>
+</head>
+<body>
+    <h1>hello user</h1>
+    <form th:action="@{/dologout}" method="post">
+        <button type="submit" value="logout">Log out</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,31 @@
+.btn-addNewUser {
+    padding-top: 3px;
+    border-radius: 20px;
+    background: black;
+    width: 30px;
+    height: 30px;
+    color: white;
+}
+
+.btn-search {
+    color: white;
+    background: #3ecf8e
+}
+
+.paging{
+    justify-content: space-between;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+.no-record{
+    justify-content: center; color: red;
+}
+.margin-Left-10{
+    margin-left: 10px;
+}
+.padding-top-20{
+    padding-top: 20px;
+}
+.color-i{
+    color:#a9a3a3;
+}

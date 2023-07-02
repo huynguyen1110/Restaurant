@@ -1,0 +1,19 @@
+.addNew {
+    color: #000;
+    font-size: 20px;
+}
+
+.searchMerchant, .clearMerchant {
+    border-radius: .25rem !important;
+}
+
+.sortASC, .sortDESC {
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.showItems {
+    color: #a3a3a3;
+    font-size: 15px;
+    align-self: center;
+}

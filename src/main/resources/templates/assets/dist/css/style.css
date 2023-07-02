@@ -1,0 +1,78 @@
+.user-panel, .user-panel .info {
+    overflow: unset !important;
+}
+
+.account_dropdown {
+    min-width: 100%;
+    position: absolute;
+    top: 45px;
+    /* right: 0; */
+    background: #fff;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+    z-index: 3;
+    border-radius: 11px;
+    border-bottom: solid gray;
+    border-right: solid gray;
+    border-left: solid gray;
+    display: none;
+}
+
+.account_dropdown_body {
+    padding: 10px 0 0 0;
+}
+
+/* .account_dropdown::after{
+    content: "";
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-bottom: 10px solid #fff;
+    border-top: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    position: absolute;
+    top: -20px;
+    right: 20px;
+} */
+
+.account_dropdown_item a {
+    display: block;
+    padding: 5px 15px;
+    font-size: 15px;
+}
+
+.account_dropdown_item a:hover {
+    background: gray;
+    color: #fff;
+}
+
+.account_dropdown_item a i {
+    line-height: 1;
+    margin-right: 15px;
+    font-size: 15px;
+    vertical-align: middle;
+}
+
+
+.account_dropdown_footer {
+    border-top: 1px solid #f2f2f2;
+}
+
+.account_dropdown_footer a {
+    display: block;
+    color: #333;
+    padding: 5px 15px;
+    font-size: 15px;
+}
+
+.account_dropdown_footer a:hover {
+    background: gray;
+    color: #fff;
+}
+
+.account_dropdown_footer a i {
+    line-height: 1;
+    margin-right: 15px;
+    font-size: 15px;
+    vertical-align: middle;
+}
