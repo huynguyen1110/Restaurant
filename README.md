@@ -1,11 +1,13 @@
 ﻿# Restaurant
 ## Công nghệ sử dụng
-  - java 16
+  - java 11
   
-  - mariadb Database
+  - postgresql Database
   
-  - Spring boot 3.0.6
+  - Spring boot
 
   - thymeleaf
 
   - Springdata jpa
+
+  - Spring data jpa
